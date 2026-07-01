@@ -1,4 +1,5 @@
 .env
+firebase-service-account.json
 .idea
 venv
 __pycache__/
