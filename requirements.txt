@@ -11,7 +11,6 @@ django-apscheduler==0.7.0
 django-cors-headers==4.9.0
 django-debug-toolbar==7.0.0
 djangorestframework==3.17.1
-djangorestframework_simplejwt==5.5.1
 factory_boy==3.3.3
 Faker==40.27.0
 firebase_admin==7.4.0
