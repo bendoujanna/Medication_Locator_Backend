@@ -6,5 +6,5 @@ class InventoryConfig(AppConfig):
     name = "inventory"
 
     def ready(self):
-        import inventory.models  # noqa: F401
+        import inventory.models 
 
