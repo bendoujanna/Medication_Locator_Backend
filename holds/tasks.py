@@ -1,12 +1,7 @@
-"""
-Scheduled task: expire stale holds and purge PHI
-"""
 from django.utils import timezone
 
-
 def expire_stale_holds():
-    # Import inside the function to avoid circular imports at module load time.
-    from apps.holds.models import HoldRequest
+    from holds.models import HoldRequest
 
     now = timezone.now()
     stale_holds = HoldRequest.objects.filter(
@@ -27,7 +22,9 @@ def expire_stale_holds():
 
 
 def start_scheduler():
-
+    """
+    Starts the background scheduler.
+    """
     from apscheduler.schedulers.background import BackgroundScheduler
     from apscheduler.triggers.interval import IntervalTrigger
 
