@@ -1,3 +1,4 @@
+import os
 import firebase_admin
 from firebase_admin import auth as firebase_auth, credentials
 from rest_framework.authentication import BaseAuthentication
@@ -7,7 +8,13 @@ from django.conf import settings
 
 def initialize_firebase():
     if not firebase_admin._apps:
-        cred = credentials.Certificate(settings.FIREBASE_CREDENTIALS_PATH)
+        cred_path = getattr(settings, 'FIREBASE_CREDENTIALS_PATH', '')
+
+        if not cred_path or not os.path.exists(cred_path):
+            print("Warning: Firebase credentials file not found. Skipping Firebase initialization (Safe for CI).")
+            return
+
+        cred = credentials.Certificate(cred_path)
         firebase_admin.initialize_app(cred)
 
 class FirebaseAuthentication(BaseAuthentication):
