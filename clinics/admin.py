@@ -16,7 +16,7 @@ class ClinicStaffAdmin(admin.ModelAdmin):
     list_display = ["username", "full_name", "role", "clinic", "is_active", "created_at"]
     list_filter = ["role", "is_active", "clinic"]
     search_fields = ["username", "full_name", "firebase_uid"]
-    readonly_fields = ["staff_id", "firebase_uid", "created_at"]
+    readonly_fields = ["staff_id", "created_at"]  #add firebase_uid
     ordering = ["clinic", "username"]
 
     # firebase_uid is read-only for debugging provisioning issues

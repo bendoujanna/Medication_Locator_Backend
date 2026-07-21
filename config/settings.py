@@ -133,7 +133,7 @@ STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'authentication.authentication.FirebaseAuthentication',
+        'authentication.firebase.FirebaseAuthentication',
     ),
     "DEFAULT_PERMISSION_CLASSES": [
         "authentication.permissions.IsClinicStaff",
@@ -160,3 +160,6 @@ CORS_ALLOWED_ORIGINS = config(
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# orsm
+OSRM_BASE_URL = config("OSRM_BASE_URL", default="http://router.project-osrm.org")
