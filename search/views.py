@@ -232,7 +232,7 @@ class MapPinsView(APIView):
     GET /search/map-pins/
     Returns a minimal payload of clinic pins for Leaflet.js rendering.
     Runs the same search logic as MedicationSearchView but returns
-    only the fields Leaflet needs — optimized for 3G (NFR 1).
+    only the fields Leaflet needs — optimized for 3G.
     """
     authentication_classes = []
     permission_classes = [AllowAny]

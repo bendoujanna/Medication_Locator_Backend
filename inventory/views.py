@@ -142,7 +142,7 @@ class InventoryRetrieveUpdateDeleteView(APIView):
 
 
 class ThresholdUpdateView(APIView):
-    """PATCH /clinics/{clinic_id}/inventory/{inventory_id}/threshold/ (FR 4.2)"""
+    """PATCH /clinics/{clinic_id}/inventory/{inventory_id}/threshold/"""
     authentication_classes = [FirebaseAuthentication]
     permission_classes = [IsClinicAdministrator, IsOwnClinic]
 

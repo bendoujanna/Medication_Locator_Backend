@@ -76,7 +76,7 @@ class InventoryUpdateSerializer(serializers.ModelSerializer):
 
 
 class ThresholdSerializer(serializers.ModelSerializer):
-    """Dedicated serializer for the threshold configuration endpoint (FR 4.2)."""
+    """Dedicated serializer for the threshold configuration endpoint"""
     class Meta:
         model = Inventory
         fields = ["inventory_id", "low_stock_threshold", "status"]
