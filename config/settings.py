@@ -153,8 +153,7 @@ initialize_firebase()
 # CORS CONFIGURATION
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    "https://medication-locator-frontend.vercel.app",
-    default="http://localhost:5173"
+    default="http://localhost:5173,https://medication-locator-frontend.vercel.app"
 ).split(",")
 
 # STATIC FILES
