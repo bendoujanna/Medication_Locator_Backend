@@ -94,6 +94,40 @@ class HoldRequestStatusView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class HoldRequestActiveView(APIView):
+    """
+    GET /hold-requests/active/?phone=%2B25078...
+    Public endpoint to find the most recent active hold for a given phone number.
+    Returns 404 if no active hold exists (or if it was purged).
+    """
+    authentication_classes = []
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        phone = request.query_params.get("phone")
+
+        if not phone:
+            return Response(
+                {"error": {"code": "MISSING_PHONE", "message": "Phone number is required.", "field": "phone"}},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Look for the most recent PENDING or APPROVED hold matching this phone
+        hold = HoldRequest.objects.select_related(
+            "inventory", "inventory__clinic", "inventory__medication"
+        ).filter(
+            patient_contact=phone,
+            status__in=[HoldRequest.Status.PENDING, HoldRequest.Status.APPROVED]
+        ).order_by("-requested_at").first()
+
+        if not hold:
+            return Response(
+                {"error": {"code": "NOT_FOUND", "message": "No active hold found for this number.", "field": None}},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        return Response(HoldRequestPublicSerializer(hold).data)
+
 # Clinic-facing
 class ClinicHoldRequestListView(APIView):
     """

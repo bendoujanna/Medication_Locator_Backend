@@ -88,7 +88,7 @@ class HoldRequest(models.Model):
             self.resolved_at = timezone.now()
             self.save(update_fields=["status", "resolved_at"])
 
-        self.purge_phi()
+        # self.purge_phi()
 
     def deny(self):
         """

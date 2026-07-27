@@ -4,6 +4,7 @@ from . import views
 # Client-facing
 urlpatterns = [
     path("", views.HoldRequestCreateView.as_view()),
+    path("active/", views.HoldRequestActiveView.as_view()),
     path("<uuid:request_id>/", views.HoldRequestStatusView.as_view()),
 ]
 
