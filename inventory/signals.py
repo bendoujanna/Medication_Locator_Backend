@@ -38,7 +38,7 @@ def manage_stock_alerts(sender, instance, **kwargs):
     the current inventory status.
     """
 
-    if instance.status == Inventory.Status.IN_STOCK:
+    if instance.status == Inventory.Status.AVAILABLE:
         StockAlert.objects.filter(
             inventory=instance,
             is_resolved=False
