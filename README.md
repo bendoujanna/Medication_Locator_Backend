@@ -299,12 +299,9 @@ Metformin, Artemether/Lumefantrine, Amoxicillin/Clavulanate, Ciprofloxacin, Salb
 
 ## API Reference
 
-A complete Postman collection covering every endpoint is available in the repository
-root as `medlocator_postman_collection.json`. Import it into Postman and set the
-following collection variables before running:
+All API endpoints have been tested on Postman. 
 
-- `BASE_URL`: `http://localhost:8000/api/v1`
-- `FIREBASE_TOKEN`: A valid Firebase ID token obtained after signing in
+[API endpoints documentation](#https://docs.google.com/document/d/1xkSXa8PQplb02rruqD7dzq7YzElDwl7n_t6hLK-WJy8/edit?usp=sharing)
 
 **Endpoint groups**
 
