@@ -301,7 +301,7 @@ Metformin, Artemether/Lumefantrine, Amoxicillin/Clavulanate, Ciprofloxacin, Salb
 
 All API endpoints have been tested on Postman. 
 
-[API endpoints documentation](#https://docs.google.com/document/d/1xkSXa8PQplb02rruqD7dzq7YzElDwl7n_t6hLK-WJy8/edit?usp=sharing)
+[API endpoints documentation](https://docs.google.com/document/d/1xkSXa8PQplb02rruqD7dzq7YzElDwl7n_t6hLK-WJy8/edit?usp=sharing)
 
 **Endpoint groups**
 
