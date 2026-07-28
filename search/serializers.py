@@ -11,6 +11,7 @@ class MedicationResultSerializer(serializers.Serializer):
     brand_name = serializers.CharField()
     dosage_form = serializers.CharField()
     strength = serializers.CharField()
+    active_ingredient = serializers.CharField(source='ingredient.name')
 
 
 class SearchResultSerializer(serializers.Serializer):

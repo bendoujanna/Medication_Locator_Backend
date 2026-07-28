@@ -34,6 +34,7 @@ def _build_result(inventory, clinic, lat, lng):
             "brand_name": med.brand_name,
             "dosage_form": med.get_dosage_form_display(),
             "strength": med.strength,
+            "active_ingredient": med.ingredient.name,
         },
         "traffic_light_status": inventory.status,
         "hold_available": inventory.status != Inventory.Status.OUT_OF_STOCK,
@@ -195,7 +196,7 @@ class SmartSubstituteView(APIView):
         # Only in-stock or low-stock inventory — never surface out-of-stock substitutes
         inventory_qs = (
             Inventory.objects
-            .select_related("clinic", "medication")
+            .select_related("clinic", "medication", "medication__ingredient")  # 🚨 UPDATE THIS LINE!
             .filter(
                 medication_id__in=substitute_med_ids,
                 clinic__is_active=True,
