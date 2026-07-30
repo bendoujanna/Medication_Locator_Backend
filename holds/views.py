@@ -117,7 +117,7 @@ class HoldRequestActiveView(APIView):
             "inventory", "inventory__clinic", "inventory__medication"
         ).filter(
             patient_contact=phone,
-            status__in=[HoldRequest.Status.PENDING, HoldRequest.Status.APPROVED]
+            status__in=[HoldRequest.Status.PENDING, HoldRequest.Status.APPROVED, HoldRequest.Status.DENIED]
         ).order_by("-requested_at").first()
 
         if not hold:

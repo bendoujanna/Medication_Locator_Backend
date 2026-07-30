@@ -100,7 +100,7 @@ class HoldRequest(models.Model):
         self.status = self.Status.DENIED
         self.resolved_at = timezone.now()
         self.save(update_fields=["status", "resolved_at"])
-        self.purge_phi()
+        # self.purge_phi()
 
     def get_masked_contact(self):
         p = self.patient_contact
