@@ -216,11 +216,7 @@ Copy `.env.example` to `.env` and set the following:
 | `SECRET_KEY` | Yes | Django secret key. Generate one with `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"` |
 | `DEBUG` | Yes | Set to `True` for local development, `False` in production |
 | `ALLOWED_HOSTS` | Yes | Comma-separated list of allowed hosts, e.g. `localhost,127.0.0.1` |
-| `DB_NAME` | Yes | PostgreSQL database name |
-| `DB_USER` | Yes | PostgreSQL username |
-| `DB_PASSWORD` | Yes | PostgreSQL password |
-| `DB_HOST` | Yes | Database host, typically `localhost` for local development |
-| `DB_PORT` | Yes | Database port, typically `5432` |
+| `DATABASE_URL` | Yes | PostgreSQL database URL, production or local |
 | `FIREBASE_CREDENTIALS_PATH` | Yes | Absolute path to your Firebase service account JSON file |
 | `CORS_ALLOWED_ORIGINS` | Yes | Comma-separated origins allowed to call the API, e.g. `http://localhost:5173` |
 | `OSRM_BASE_URL` | No | OSRM routing engine URL. Defaults to the public instance at `http://router.project-osrm.org` |
@@ -352,33 +348,8 @@ no authentication requirement.
 python manage.py test
 ```
 
-Test factories are available via `factory-boy`. Individual app tests can be run with:
-
-```bash
-python manage.py test authentication
-python manage.py test clinics
-python manage.py test inventory
-python manage.py test holds
-python manage.py test search
-```
-
 ---
 
-## Deployment
-
-The application is designed to deploy on Render.com's free tier.
-
-**Build command**
-
-```bash
-pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
-```
-
-**Start command**
-
-```bash
-gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 2
-```
 
 **Environment variables**
 
@@ -417,7 +388,7 @@ code path triggered the save.
 **PHI purge on resolution**
 The patient phone number collected during a hold request (`patient_contact`) is the only
 piece of Protected Health Information the system ever stores. It is permanently deleted
-the moment the hold is resolved (approved, denied, or expired) via `HoldRequest.purge_phi()`.
+after 2 hours (approved, denied, or expired) via `HoldRequest.purge_phi()`.
 The scheduled task in `holds/tasks.py` enforces this for expired holds every 5 minutes.
 
 **Polling instead of WebSockets**
